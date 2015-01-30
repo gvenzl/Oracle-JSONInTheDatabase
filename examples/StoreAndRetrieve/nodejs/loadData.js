@@ -1,7 +1,16 @@
 // Function for generating random JSON documents
+
+var person = {
+  firstName: ["John", "Markus", "Gerald", "Adrian", "Dominik",
+                   "Andrew", "David", "Edward", "Martin", "Penny"],
+  lastName: ["Nangle", "Gratzer", "Venzl", "Richmond", "Ashley",
+                   "Bond", "Smith", "Stadler", "Avril", "Jones"],
+  age: [29, 43, 48, 42, 21, 32, 56]
+}
+
 function generateJSON() {
   //TODO: Implement random JSON generation
-  return '{ "firstName": "Gerald", "lastName": "Venzl" }';
+  return '{ "firstName": "Gerald", "lastName": "Venzl", "age": 29 }';
 }
 
 // Get the required Oracle driver module that I've built before
@@ -19,8 +28,11 @@ oracledb.getConnection({
       return;
   }
 
-  // Insert data into the database
-  insert(connection);
+  while (true) {
+    // Insert data into the database
+    insert(connection);
+    //TODO: Implement 2 second sleep
+  }
 });
 
 function insert (connection) {
