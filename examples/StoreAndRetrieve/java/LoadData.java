@@ -14,14 +14,18 @@ import java.util.Random;
  */
 public class LoadData {
 
-  // Inner helper class for holding some sample values for the JSON
+  /**
+   * Inner hepler class for holind some samples values for the JSON generation
+   * @author gvenzl
+   *
+   */
   private static class Person {
   
     protected static String[] firstName = { "John", "Markus", "Gerald", "Adrian", "Dominik",
                                             "Andrew", "David", "Edward", "Martin", "Penny" };
     private static String[] lastName = { "Nangle", "Gratzer", "Venzl", "Richmond", "Ashley",
                                          "Bond", "Smith", "Stadler", "Avril", "Jones" };
-    private static Integer[] age = {29, 43, 48, 42, 21, 32, 56};
+    private static Integer[] age = { 29, 43, 48, 42, 21, 32, 56 };
   }
     
   public static void main(String[] args) throws SQLException, InterruptedException {

@@ -6,7 +6,7 @@ var person = {
   lastName: ["Nangle", "Gratzer", "Venzl", "Richmond", "Ashley",
                    "Bond", "Smith", "Stadler", "Avril", "Jones"],
   age: [29, 43, 48, 42, 21, 32, 56]
-}
+};
 
 function generateJSON() {
   //TODO: Implement random JSON generation
@@ -31,7 +31,7 @@ oracledb.getConnection({
   while (true) {
     // Insert data into the database
     insert(connection);
-    //TODO: Implement 2 second sleep
+    //TODO: Implement 2 second calls
   }
 });
 
