@@ -10,9 +10,11 @@ age = [ 29, 43, 48, 42, 21, 32, 56 ]
 
 def generateJSON():
     """Generate random JSON document"""
-    return json.dumps({ "firstName": firstName[random.randint(0, len(firstName)-1)],  
+    return json.dumps({ "firstName": firstName[random.randint(0, len(firstName)-1)],
                         "lastName": lastName[random.randint(0, len(lastName)-1)],
-                        "age": age[random.randint(0,len(age)-1)] })
+                        "age": age[random.randint(0,len(age)-1)]
+                      })
+
 
 # Main try clause (to gracefully catch Ctrl+C and close DB connection)
 try:
@@ -25,17 +27,20 @@ try:
  
     # Endless loop until user hits Ctrl+C
     while True:
-        # Set "input" directory bind variable to generated JSON
-        input = [ (generateJSON()) ]
+        # Create new BLOB variable and set JSON
+        blob_value = cur.var(cx_Oracle.BLOB)
+        blob_value.setvalue(0, generateJSON())
+        # Tell the cursor that the input variable is a BLOB
+        cur.setinputsizes(input = cx_Oracle.BLOB)
         # Execute the statement. The cx_Oracle documentation says that it won't re-prepare the statement if it is the same as before. So technically I could just post the insert statement directly and don't prepare the cursor at all. However, for educational purposes it is better to show how to prepare a cursor and use None to make use of the prepared cursor.
-        cur.execute(None, input)
+        cur.execute(None, input=blob_value)
         # Commit changes to the database
         dbConn.commit()
         print (str(cur.rowcount) + " row(s) inserted")
 
         # Sleep for 2 seconds
         time.sleep(2)
-# Capture Ctrl+C and SystemExit and close the dataase connection
+# Capture Ctrl+C and SystemExit and close the database connection
 except (KeyboardInterrupt, SystemExit):
     print ("Closing Database connection")
     cur.close()

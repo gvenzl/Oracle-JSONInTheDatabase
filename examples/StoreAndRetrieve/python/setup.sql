@@ -20,4 +20,4 @@ ALTER USER TEST QUOTA UNLIMITED ON USERS;
 conn TEST/test@//localhost:1521/TEST
 
 -- Create JSON table holidng a JSON document
-CREATE TABLE JSON (doc    CLOB      CONSTRAINT check_is_valid_json CHECK (doc IS JSON));
+CREATE TABLE JSON (doc    BLOB      CONSTRAINT check_is_valid_json CHECK (doc IS JSON FORMAT JSON));
