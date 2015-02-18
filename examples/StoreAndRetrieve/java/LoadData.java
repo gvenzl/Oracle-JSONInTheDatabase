@@ -29,7 +29,7 @@ public class LoadData {
   }
     
   public static void main(String[] args) throws SQLException, InterruptedException {
-    // Connect to the database (ojdbcN.jar needs to be in the classpath)
+    // Connect to the database (ojdbc<N>.jar needs to be in the classpath)
     Connection dbConn = DriverManager.getConnection("jdbc:oracle:thin:TEST/test@//gvenzl-virtual:1521/TEST");
     // Turn auto commit off (turned on by default)
     dbConn.setAutoCommit(false);
@@ -44,11 +44,12 @@ public class LoadData {
 	    // Set clob instance as input parameter for INSERT statement
 	    stmt.setClob(1, clob);
 	    // Execute the INSERT statement
-	    stmt.execute();
+	    int affectedRows = stmt.executeUpdate();
 	    // Free up resource
 	    clob.free();
 	    // Commit inserted row to the database
 	    dbConn.commit();
+	    System.out.println(affectedRows + " row(s) inserted.");
 	    Thread.sleep(2000);
     }
   }
