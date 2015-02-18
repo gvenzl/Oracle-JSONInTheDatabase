@@ -12,6 +12,6 @@ Sets up the environment. You must run this script as privileged user, e.g. SYS, 
 ## cleanup.sql
 Cleans the environment up. This cleanup script assumes that you have used a pluggable database (PDB) for the example. If you do not have used a PDB for the example you have to remove the approprite commands as commented within the file itself.
 ## loadData.js
-This script generates and stores random JSON documents in an endless loop.
+This script generates and stores random JSON documents in an endless loop which a pause of 2 seconds between inserts.
 ## retrieveData.js
 This script retrieves certain attributes from all JSON documents stored.

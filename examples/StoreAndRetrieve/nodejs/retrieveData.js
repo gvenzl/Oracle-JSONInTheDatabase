@@ -5,7 +5,7 @@ oracledb.getConnection({
     // The connection details to my database
     user : "TEST",
     password : "test",
-    connectString : "localhost:1521/TEST"
+    connectString : "gvenzl-virtual:1521/TEST"
   },
   function(err, connection) {
     if (err) {
