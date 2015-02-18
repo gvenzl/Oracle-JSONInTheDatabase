@@ -1,5 +1,5 @@
 # Overview
-This example creates a simple JSON table within the Oracle Database and then stores and retrieves data from it using [Java](http://java.org)
+This example creates a simple JSON table within the Oracle Database and then stores and retrieves data from it using [Java](http://java.net)
 
 # Prerequisites
 * Oracle Database 12.1.0.2+
