@@ -18,9 +18,9 @@ BEGIN
                         ' }');
       -- Insert JSON into the database
       INSERT INTO JSON VALUES (v_json);
+      DBMS_OUTPUT.PUT_LINE(TO_CHAR(SQL%ROWCOUNT) || ' row(s) inserted.');
       -- Commit the inserted row
       COMMIT;
-      DBMS_OUTPUT.PUT_LINE(TO_CHAR(SQL%ROWCOUNT) || ' row(s) inserted.');
       DBMS_LOCK.SLEEP(2);
    END LOOP;
 END;
