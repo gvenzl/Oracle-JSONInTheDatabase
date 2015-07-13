@@ -75,7 +75,7 @@ class TweetsListener(StreamListener):
         return True
 
     def on_error(self, error):
-        print("Error: " + error)
+        print("Error: " + str(error))
         return True
 
 # Setup the authentication handler
