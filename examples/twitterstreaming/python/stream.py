@@ -4,6 +4,7 @@
 from tweepy import OAuthHandler
 from tweepy import Stream
 from tweepy.streaming import StreamListener
+import argparse
 import cx_Oracle
 
 db_host = "<host name>"               # Database host name/IP address
