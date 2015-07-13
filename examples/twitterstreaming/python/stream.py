@@ -78,13 +78,26 @@ class TweetsListener(StreamListener):
         print("Error: " + str(error))
         return True
 
-# Setup the authentication handler
-auth = OAuthHandler(twitter_consumer_token, twitter_consumer_secret)
-auth.set_access_token(twitter_access_token, twitter_access_secret)
+if __name__ == "__main__":
+    argParser = argparse.ArgumentParser()
+    argParser.add_argument("-batch", nargs="?", type=int, help="Database insert batch size")
+    argParser.add_argument("-track", nargs="?", help="Track tweets based on a list of comma separated hash tags")
+    args = argParser.parse_args()
+    
+    # Setup the authentication handler
+    auth = OAuthHandler(twitter_consumer_token, twitter_consumer_secret)
+    auth.set_access_token(twitter_access_token, twitter_access_secret)
 
-# Connect to the Twitter stream
-stream = Stream(auth, TweetsListener(), Timeout=None)
-try:
-    stream.sample()
-except (KeyboardInterrupt, SystemExit):
-    print("Good bye!")
+    # Connect to the Twitter stream
+    stream = Stream(auth, TweetsListener(), Timeout=None)
+    try:
+        # If batch size is passed on set that batch size (default defined on top)
+        if args.batch:
+            db_batchSize = args.batch
+        if args.track:
+            track_list = args.track.strip().split(",")
+            stream.filter(track=track_list)
+        else: 
+            stream.sample()
+    except (KeyboardInterrupt, SystemExit):
+        print("Good bye!")
