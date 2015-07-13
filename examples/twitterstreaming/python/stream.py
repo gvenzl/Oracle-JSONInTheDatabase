@@ -82,7 +82,7 @@ class TweetsListener(StreamListener):
 if __name__ == "__main__":
     argParser = argparse.ArgumentParser()
     argParser.add_argument("-batch", nargs="?", type=int, help="Database insert batch size")
-    argParser.add_argument("-track", nargs="?", help="Track tweets based on a list of comma separated hash tags")
+    argParser.add_argument("-track", nargs="?", help="Track tweets based on a list of comma separated values")
     args = argParser.parse_args()
     
     # Setup the authentication handler
