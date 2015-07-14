@@ -51,7 +51,6 @@ class DBLoader:
         
     def load(self, data):
         self._tweets.append((data,))
-        
         # If inserts reach commit size issue a commit
         if (len(self._tweets) == db_batchSize):
             self._persist()
@@ -85,28 +84,27 @@ if __name__ == "__main__":
     argParser.add_argument("-track", nargs="?", help="Track tweets based on a list of comma separated values")
     argParser.add_argument("-lang", nargs="?", help="List of comma spearated tweet languages (en=English, de=German, fr=French, nl=Dutch, ...")
     args = argParser.parse_args()
-    
-    # Setup the authentication handler
-    auth = OAuthHandler(twitter_consumer_token, twitter_consumer_secret)
-    auth.set_access_token(twitter_access_token, twitter_access_secret)
 
-    # Connect to the Twitter stream
-    stream = Stream(auth, TweetsListener(), Timeout=None)
+    if args.batch:
+        db_batchSize = args.batch
+
+    if args.lang:
+        lang_list = args.lang.strip().lower().split(",")
+    else:
+        lang_list = None
+
     try:
-        # If batch size is passed on set that batch size (default defined on top)
-        if args.batch:
-            db_batchSize = args.batch
+        # Setup the authentication handler
+        auth = OAuthHandler(twitter_consumer_token, twitter_consumer_secret)
+        auth.set_access_token(twitter_access_token, twitter_access_secret)
+        # Connect to the Twitter stream
+        stream = Stream(auth, TweetsListener(), Timeout=None)
 
-        # If the languages parameter is set, pass them on to the api
-        if args.lang:
-            lang_list = args.lang.strip().lower().split(",")
-        else:
-            lang_list = None
-        
         if args.track:
             track_list = args.track.strip().split(",")
             stream.filter(track=track_list, languages=lang_list)
-        else: 
+        else:
             stream.sample(languages=lang_list)
+
     except (KeyboardInterrupt, SystemExit):
         print("Good bye!")
