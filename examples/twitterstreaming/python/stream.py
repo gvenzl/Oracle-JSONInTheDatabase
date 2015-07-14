@@ -83,6 +83,7 @@ if __name__ == "__main__":
     argParser = argparse.ArgumentParser()
     argParser.add_argument("-batch", nargs="?", type=int, help="Database insert batch size")
     argParser.add_argument("-track", nargs="?", help="Track tweets based on a list of comma separated values")
+    argParser.add_argument("-lang", nargs="?", help="List of comma spearated tweet languages (en=English, de=German, fr=French, nl=Dutch, ...")
     args = argParser.parse_args()
     
     # Setup the authentication handler
@@ -95,10 +96,17 @@ if __name__ == "__main__":
         # If batch size is passed on set that batch size (default defined on top)
         if args.batch:
             db_batchSize = args.batch
+
+        # If the languages parameter is set, pass them on to the api
+        if args.lang:
+            lang_list = args.lang.strip().lower().split(",")
+        else:
+            lang_list = None
+        
         if args.track:
             track_list = args.track.strip().split(",")
-            stream.filter(track=track_list)
+            stream.filter(track=track_list, languages=lang_list)
         else: 
-            stream.sample()
+            stream.sample(languages=lang_list)
     except (KeyboardInterrupt, SystemExit):
         print("Good bye!")
