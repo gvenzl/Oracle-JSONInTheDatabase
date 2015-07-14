@@ -107,4 +107,4 @@ if __name__ == "__main__":
             stream.sample(languages=lang_list)
 
     except (KeyboardInterrupt, SystemExit):
-        print("Good bye!")
+        print("\nGood bye!")
