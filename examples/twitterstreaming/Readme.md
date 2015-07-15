@@ -1,5 +1,5 @@
 # Overview
-This example creates a simple JSON table within the Oracle Database and then streams tweets into it using [Python](http://www.python.org)
+This example creates a simple JSON table within the Oracle Database and then streams tweets into it using [Python](http://www.python.org). In order for it to work you have to have a twitter account and setup a twitter application.
 
 # Prerequisites
 * Oracle Database 12.1.0.2+
@@ -15,3 +15,8 @@ This example creates a simple JSON table within the Oracle Database and then str
       -batch [BATCH]  Database insert batch size
       -track [TRACK]  Track tweets based on a list of comma separated values
       -lang [LANG]    List of comma spearated tweet languages (en=English, de=German, fr=French, nl=Dutch, ...
+
+
+# Twitter setup
+1. Go to [Twitter](http://www.twitter.com) and create an account
+2. Go to [Twitter apps](http://apps.twitter.com) and click on `Create New App`
