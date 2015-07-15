@@ -4,7 +4,7 @@ This example creates a simple JSON table within the Oracle Database and then sto
 # Prerequisites
 * Oracle Database 12.1.0.2+
 * Python 3.4+
-* [cx_Oracle 1.5.3+](http://cx-oracle.sourceforge.net/)
+* [cx_Oracle 5.1.3+](http://cx-oracle.sourceforge.net/)
 
 # Example structure
 ## setup.sql
