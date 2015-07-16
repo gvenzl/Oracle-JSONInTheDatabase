@@ -8,13 +8,13 @@ This example creates a simple JSON table within the Oracle Database and then str
 * [tweepy 3.3+](http://www.tweepy.org/)
 
 # Usage
-Usage: stream.py [-h] [-batch [BATCH]] [-track [TRACK]] [-lang [LANG]]
+    Usage: stream.py [-h] [-batch [BATCH]] [-track [TRACK]] [-lang [LANG]]
 
-Optional arguments:  
-  -h, --help      Show the help message of the program and exits  
-  -batch [BATCH]  The INSERT statement batch size (default 100). The program will execute a batch of <N> INSERTS at once followed by a commit. It is recommended to run with the default value or even a higher batch size for the sample stream.  
-  -track [TRACK]  Track tweets based on a list of comma separated values. These values can be anything including hash tags. The track list is case insensitive.   
-  -lang [LANG]    List of comma spearated tweet languages (en=English, de=German, fr=French, nl=Dutch, ...
+    Optional arguments:  
+      -h, --help      Show the help message of the program and exits  
+      -batch [BATCH]  The INSERT statement batch size (default 100). The program will execute a batch of <N> INSERTS    at once followed by a commit. It is recommended to run with the default value or even a higher batch size for the sample stream.  
+      -track [TRACK]  Track tweets based on a list of comma separated values. These values can be anything including hash tags. The track list is case insensitive.   
+      -lang [LANG]    List of comma spearated tweet languages (en=English, de=German, fr=French, nl=Dutch, ...
 ## Sample streaming
 You can easily stream from the [Twitter stream](https://dev.twitter.com/streaming/public) by not providing any of the optional arguments. However, you may want to provide a list of languages to stream via the `-lang` argument.
 
