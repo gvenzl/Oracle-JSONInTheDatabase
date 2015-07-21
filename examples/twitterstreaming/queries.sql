@@ -18,7 +18,7 @@ SELECT t.tweet.lang, count(1)
     ORDER BY 2 DESC;
 
 -- Show the tweet's language encoding and hashtags
-SELECT t.tweet.lang, JSON_QUERY(t.tweet, '$.entities.hashtags[*].text' WITH WRAPPER)
+SELECT t.tweet.lang, JSON_QUERY(t.tweet, '$.entities.hashtags[*].text' WITH WRAPPER) hashtags
  FROM twitter t
   WHERE JSON_EXISTS(t.tweet, '$.entities.hashtags[*]')
    ORDER BY 1;
