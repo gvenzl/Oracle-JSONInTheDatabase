@@ -37,7 +37,7 @@ class DBLoader:
         
     def setup(self):
         cur = self._conn.cursor()
-        cur.execute("SELECT COUNT(*) FROM USER_TABLES WHERE TABLE_NAME = :tbl_name", tbl_name=db_table)
+        cur.execute("SELECT COUNT(*) FROM USER_TABLES WHERE TABLE_NAME = UPPER(:tbl_name)", tbl_name=db_table)
         result = cur.fetchall()
         # Table count returns 0, we need to create the table first
         if (result[0][0] == 0):
